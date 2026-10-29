@@ -5,15 +5,7 @@ description: Use when given a long roleplay chat export (JSON or pasted text) an
 
 # Chat Continuation Summary
 
-Want a ready-made assistant that does this for you? Use the Context Extender bot template: https://x.ai/bot/ewIHxPc0OFG2kV5heZMT4
-
-## How to use this file with any AI
-1. Save this file as `SKILL.md`.
-2. Give it to your AI in one of these ways:
-   - **Chat apps (ChatGPT, Claude, Grok, Gemini):** upload this file or paste its contents, then say: "Follow the instructions in SKILL.md." In apps with projects or custom instructions, add it there so it applies to every chat.
-   - **Agents that support skills (Claude Code, Cursor, and similar):** put it in that tool's skills folder, for example `.claude/skills/chat-continuation-summary/SKILL.md`. The tool loads it when a request matches the description above.
-3. Attach your chat export (for example an S.AI Toolkit or Threadfold Export `.json`) or paste the chat, and ask for a continuation summary.
-4. Paste the result as the first message of a new chat with the same bot.
+Part of [Threadfold](https://github.com/IxalonDarkstone/Threadfold). See the repo's README for the bot template and setup instructions.
 
 ## Goal
 Write a paste-ready brief under 10,000 characters that lets the bot continue the story seamlessly from the last message.
