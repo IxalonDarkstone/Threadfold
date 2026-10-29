@@ -1,3 +1,5 @@
+![Threadfold: Fold the thread. Keep the story.](threadfold-banner.jpg)
+
 # Threadfold
 
 Export a full SpicyChat.ai conversation to JSON from your iPhone, then fold it into a continuation summary under 10,000 characters so you can carry a long roleplay into a fresh chat session past the 32k context limit.
