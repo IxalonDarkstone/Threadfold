@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Threadfold Export (SpicyChat full-history JSON)
 // @namespace    threadfold
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds an "Export JSON" button on spicychat.ai chats; fetches the full conversation from the API and saves S.AI-Toolkit-style JSON.
 // @match        https://spicychat.ai/*
 // @match        https://www.spicychat.ai/*
@@ -10,6 +10,7 @@
 // ==/UserScript==
 (function () {
   'use strict';
+  const E = String(); // empty string (no paired quotes, so pasting can't mangle it)
   const API = 'https://prod.nd-api.com';
   const W = window; // @grant none => runs in page context, so patches affect the site's own requests
   const H = (W.__tfHeaders = W.__tfHeaders || {});
@@ -31,15 +32,15 @@
 
   // --- Capture auth headers the site itself sends (same approach as S.AI Toolkit) ---
   const xo = XMLHttpRequest.prototype.open, xs = XMLHttpRequest.prototype.send, xh = XMLHttpRequest.prototype.setRequestHeader;
-  XMLHttpRequest.prototype.open = function (m, u) { this.__tfUrl = String(u || ''); return xo.apply(this, arguments); };
-  XMLHttpRequest.prototype.setRequestHeader = function (k, v) { if ((this.__tfUrl || '').includes('nd-api.com')) grab(k, v); return xh.apply(this, arguments); };
+  XMLHttpRequest.prototype.open = function (m, u) { this.__tfUrl = String(u || E); return xo.apply(this, arguments); };
+  XMLHttpRequest.prototype.setRequestHeader = function (k, v) { if ((this.__tfUrl || E).includes('nd-api.com')) grab(k, v); return xh.apply(this, arguments); };
   XMLHttpRequest.prototype.send = function () {
-    if ((this.__tfUrl || '').includes('kinde.com/oauth2/token')) this.addEventListener('load', function () { if (this.status === 200) tokenFrom(this.responseText); }, { once: true });
+    if ((this.__tfUrl || E).includes('kinde.com/oauth2/token')) this.addEventListener('load', function () { if (this.status === 200) tokenFrom(this.responseText); }, { once: true });
     return xs.apply(this, arguments);
   };
   const of = W.fetch;
   W.fetch = function (input, init) {
-    const url = typeof input === 'string' ? input : (input && input.url) || '';
+    const url = typeof input === 'string' ? input : (input && input.url) || E;
     try {
       if (url.includes('nd-api.com')) { grabAll(init && init.headers); if (input && input.headers) grabAll(input.headers); }
     } catch (e) {}
@@ -50,7 +51,7 @@
 
   function tokenFromStorage() {
     for (const k of Object.keys(localStorage)) {
-      const v = localStorage.getItem(k) || '';
+      const v = localStorage.getItem(k) || E;
       try {
         if (v.startsWith('eyJ')) return v;
         if (v[0] === '{') { const o = JSON.parse(v); const t = o.access_token || o.accessToken || o.token; if (t) return t; }
@@ -70,7 +71,7 @@
   }
   async function getJSON(url) {
     const r = await of.call(W, url, { headers: buildHeaders(), credentials: 'include' });
-    if (!r.ok) throw new Error(r.status + ' from ' + url.replace(API, ''));
+    if (!r.ok) throw new Error(r.status + ' from ' + url.replace(API, E));
     return r.json();
   }
 
@@ -111,11 +112,11 @@
           content: m.content, createdAt: m.createdAt, is_nsfw: m.is_nsfw
         }))
       };
-      const safe = ((ch && ch.name) || 'chat').replace(/[^a-zA-Z0-9-_ ]/g, '').trim() || 'chat';
+      const safe = ((ch && ch.name) || 'chat').replace(/[^a-zA-Z0-9-_ ]/g, E).trim() || 'chat';
       await save(JSON.stringify(out, null, 2), `chat-${safe}-${new Date().toISOString().slice(0, 10)}.json`);
       btn.textContent = `Exported ${all.length} ✓`;
     } catch (e) {
-      alert('Threadfold export failed: ' + e.message + (H.authorization ? '' : '\n(No auth token captured yet — reload the chat and try again.)'));
+      alert('Threadfold export failed: ' + e.message + (H.authorization ? E : '\n(No auth token captured yet — reload the chat and try again.)'));
       btn.textContent = 'Export JSON';
     }
     setTimeout(() => (btn.textContent = 'Export JSON'), 4000);
