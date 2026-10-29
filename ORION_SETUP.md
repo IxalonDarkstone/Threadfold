@@ -12,7 +12,7 @@ Orion can't install `.user.js` files by itself on iOS. You run them through a us
 3. Tap **•••**, then **Extensions**. Make sure Violentmonkey is turned on and allowed on spicychat.ai.
 
 ## 3. Add the script
-- **Easiest:** host `threadfold-export.user.js` at any URL (a GitHub Gist "Raw" link works), then open that URL in Orion. Violentmonkey shows an install page. Tap **Install**.
+- **Easiest:** host `https://github.com/IxalonDarkstone/Threadfold/raw/refs/heads/main/threadfold-export.user.js` at any URL (a GitHub Gist "Raw" link works), then open that URL in Orion. Violentmonkey shows an install page. Tap **Install**.
 - **No hosting:** tap **•••**, then **Extensions**, then **Violentmonkey**, then **+ (New script)**. Delete the template, paste the whole file, and save.
 
 ## 4. Use it
