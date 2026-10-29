@@ -25,12 +25,12 @@ Export a full SpicyChat.ai conversation to JSON from your iPhone, then fold it i
 2. Tap **Export JSON**. The button shows the message count when it's done (for example, "Exported 96 ✓").
 3. Save or share the file from the share sheet.
 
-If the first tap fails, reload the chat page and tap again. The script needs to see SpicyChat make one request of its own before it can reuse your login.
+If the first tap fails, reload the chat page and tap again. The script needs to see SpicyChat make one request of its own before it can reuse your login. If that fails, just copy from share and drop it in your bot/AI.
 
 ## 2. Summarize it
 
 ### Option A: Context Extender bot (easiest)
-Use the ready-made [Context Extender bot template](https://x.ai/bot/ewIHxPc0OFG2kV5heZMT4). Send it your exported `.json` and it replies with a copyable summary under 10k characters.
+Use the ready-made Grok Bot [Context Extender bot template](https://x.ai/bot/ewIHxPc0OFG2kV5heZMT4). Send it your exported `.json` and it replies with a copyable summary under 10k characters.
 
 ### Option B: Any AI, using SKILL.md
 1. Download [`SKILL.md`](SKILL.md).
