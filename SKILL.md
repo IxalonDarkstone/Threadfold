@@ -23,5 +23,7 @@ Write a paste-ready brief under 10,000 characters that lets the bot continue the
    - **Open threads:** unresolved plot points and upcoming plans.
    - **Tone and style:** point of view, formatting (such as italic actions and quoted dialogue), the balance of humor and sincerity, content level, reply length, and ending replies on a hook.
 4. Never invent details. If the chat leaves something unresolved, mark it as unclear and tell the user so they can settle it.
-5. Check the length. It must be under 10,000 characters, so trim older detail before you cut anything about the current scene.
-6. Deliver it as one copyable plain-text block with no Markdown headers inside, so it pastes cleanly into any chat app.
+5. If it fits, end with this block (story content always comes first; drop it before cutting memories):
+   `WRITING STYLE (strict): Write in flowing prose with complete sentences, never clipped fragments or clinical note-style lines ("Elara nodding—agreement."). Put all spoken dialogue in quotation marks with natural tags. Keep *italics* for actions only, written as full sentences. Use em-dashes only for genuine interruptions; otherwise use commas or periods. Vary sentence length. Show emotion through action and tone, not labels ("Curiosity genuine"). Keep each character's voice and vocabulary intact.`
+6. Check the length. It must be under 10,000 characters, so trim older detail before you cut anything about the current scene.
+7. Deliver it as one copyable plain-text block with no Markdown headers inside, so it pastes cleanly into any chat app.
