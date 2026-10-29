@@ -2,6 +2,7 @@
 name: chat-continuation-summary
 description: Use when given a long roleplay chat export (JSON or pasted text) and asked to fold it into paste-ready continuation post(s) for a fresh chat session, including re-folding a chat that already started from an earlier fold.
 ---
+<!-- threadfold-skill-version: 4 -->
 
 # Chat Continuation Summary (Threadfold)
 
@@ -23,8 +24,11 @@ Leave out the user's persona details, since the bot already has them. Keep only 
 - **Drop:** resolved threads, one-off scene details (old outfits, old rooms), and jokes that stopped recurring.
 - **Update:** change any fact the new messages changed (relationship status, locations, who knows what). Never keep outdated facts.
 
+## 3b. Cut point
+Always end on the user's last message. Ignore any bot replies after it, because the new bot will write that reply itself. Quote the user's final message word for word as the last story line, labeled as theirs, so the bot answers it naturally.
+
 ## 4. Sections (in this order)
-Header line; Premise; Characters (as they've developed); Canon facts; Story so far (earlier arcs compressed, recent ones detailed); Current scene (time, place, who's present, clothing and physical state, mood); Last exchange (paraphrased closely, plus whose turn it is); Open threads; Tone and style; Writing style block.
+Header line; Premise; Characters (as they've developed); Canon facts; Story so far (earlier arcs compressed, recent ones detailed); Open threads; Tone and style; Writing style block; Current scene (time, place, who's present, clothing and physical state, mood) as it stood right before the user's last message; Last exchange (the bot's reply just before it, paraphrased closely, then the user's final message quoted word for word as the very last line of the post).
 
 ## 5. Size and splitting
 - Each post must be under 10,000 characters. Check with `wc -m`.
@@ -34,11 +38,11 @@ Header line; Premise; Characters (as they've developed); Canon facts; Story so f
 - Split at section boundaries. Put the current scene, last exchange and style notes in the final part.
 
 ## 6. Headers and instructions inside each post
-- Single post: start with `[THREADFOLD FOLD N | PART 1/1 | covers the story through: <one-line marker of the last event>]`, then: "Continue the roleplay from the exact point below. Stay in character as <bot characters> and the NPCs. Never speak or act for <user's character>."
+- Single post: start with `[THREADFOLD FOLD N | PART 1/1 | covers the story through: <one-line marker of the last event>]`, then: "Continue the roleplay by replying to <user's character>'s last message, quoted at the end. Stay in character as <bot characters> and the NPCs. Never speak or act for <user's character>."
 - Multi-part, every part except the last: start with `[THREADFOLD FOLD N | PART X/Y]`, then: "This is part X of Y of a story summary. Do not roleplay yet. Reply only with: 'Got part X. Ready for part X+1.'"
-- Final part: `[THREADFOLD FOLD N | PART Y/Y]`, then: "That's the full summary. Continue the roleplay from the exact point below..." (same instruction as a single post).
+- Final part: `[THREADFOLD FOLD N | PART Y/Y]`, then: "That's the full summary. Continue the roleplay by replying to <user's character>'s last message, quoted at the end..." (same instruction as a single post).
 
-## 7. Writing style block (end of the final part, if it fits)
+## 7. Writing style block (final part, before the current scene, if it fits)
 WRITING STYLE (strict): Write in flowing prose with complete sentences, never clipped fragments or clinical note-style lines ("Elara nodding—agreement."). Put all spoken dialogue in quotation marks with natural tags. Keep *italics* for actions only, written as full sentences. Use em-dashes only for genuine interruptions; otherwise use commas or periods. Vary sentence length. Show emotion through action and tone, not labels ("Curiosity genuine"). Keep each character's voice and vocabulary intact.
 
 ## 8. Deliver
